@@ -1,0 +1,10 @@
+<config description="自动配置:URL">
+    <group>
+        <property name="db.url"></property>
+        <property name="db.username"></property>
+        <property name="db.password"></property>
+    </group>
+	<script>
+        <generate template="config.properties" destfile="/WEB-INF/classes/config.properties" charset="UTF-8" />
+    </script>
+</config>

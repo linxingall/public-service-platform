@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ygjt.gdn.psp.persistence.UserDao">
+     <resultMap id="BaseResultMap" type="com.ygjt.gdn.psp.model.UserDo">
+          <id column="ID" jdbcType="INTEGER" property="id" />
+          <result column="PARENT_ID" jdbcType="INTEGER" property="parentId" />
+          <result column="NAME" jdbcType="VARCHAR" property="name" />
+          <result column="PWD" jdbcType="VARCHAR" property="pwd" />
+          <result column="TYPE" jdbcType="CHAR" property="type" />
+          <result column="TRUE_NAME" jdbcType="VARCHAR" property="trueName" />
+          <result column="ADDR" jdbcType="VARCHAR" property="addr" />
+          <result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+          <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+          <result column="CARD" jdbcType="VARCHAR" property="card" />
+          <result column="STAT" jdbcType="CHAR" property="stat" />
+          <result column="SECRET_KEY" jdbcType="VARCHAR" property="secretKey" />
+          <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+          <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+          <result column="CREATE_USER" jdbcType="INTEGER" property="createUser" />
+          <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+          <result column="UPDATE_USER" jdbcType="INTEGER" property="updateUser" />
+          <result column="IS_DETELE" jdbcType="CHAR" property="isDetele" />
+     </resultMap>
+     <sql id="Query_Where_Clause">
+          <where>
+               <foreach collection="oredCriteria" item="criteria" separator="or">
+                    <if test="criteria.valid">
+                         <trim prefix="(" prefixOverrides="and" suffix=")">
+                              <foreach collection="criteria.criteria" item="criterion">
+                                   <choose>
+                                        <when test="criterion.noValue">
+                                             and ${criterion.condition}
+                                        </when>
+                                        <when test="criterion.singleValue">
+                                             and ${criterion.condition} #{criterion.value}
+                                        </when>
+                                        <when test="criterion.betweenValue">
+                                             and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                        </when>
+                                        <when test="criterion.listValue">
+                                             and ${criterion.condition}
+                                             <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                                  #{listItem}
+                                             </foreach>
+                                        </when>
+                                   </choose>
+                              </foreach>
+                         </trim>
+                    </if>
+               </foreach>
+          </where>
+     </sql>
+     <sql id="Update_By_Query_Where_Clause">
+          <where>
+               <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                    <if test="criteria.valid">
+                         <trim prefix="(" prefixOverrides="and" suffix=")">
+                              <foreach collection="criteria.criteria" item="criterion">
+                                   <choose>
+                                        <when test="criterion.noValue">
+                                             and ${criterion.condition}
+                                        </when>
+                                        <when test="criterion.singleValue">
+                                             and ${criterion.condition} #{criterion.value}
+                                        </when>
+                                        <when test="criterion.betweenValue">
+                                             and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                        </when>
+                                        <when test="criterion.listValue">
+                                             and ${criterion.condition}
+                                             <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                                  #{listItem}
+                                             </foreach>
+                                        </when>
+                                   </choose>
+                              </foreach>
+                         </trim>
+                    </if>
+               </foreach>
+          </where>
+     </sql>
+     <sql id="Base_Column_List">
+          ID, PARENT_ID, NAME, PWD, TYPE, TRUE_NAME, ADDR, MOBILE, EMAIL, CARD, STAT, SECRET_KEY, 
+          MEMO, CREATE_TIME, CREATE_USER, UPDATE_TIME, UPDATE_USER, IS_DETELE
+     </sql>
+     <select id="selectByQuery" parameterType="com.ygjt.gdn.psp.model.UserQuery" resultMap="BaseResultMap">
+          select
+          <if test="distinct">
+               distinct
+          </if>
+          <include refid="Base_Column_List" />
+          from tb_user
+          <if test="_parameter != null">
+               <include refid="Query_Where_Clause" />
+          </if>
+          <if test="orderByClause != null">
+               order by ${orderByClause}
+          </if>
+     </select>
+     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+          select 
+          <include refid="Base_Column_List" />
+          from tb_user
+          where ID = #{id,jdbcType=INTEGER}
+     </select>
+     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+          delete from tb_user
+          where ID = #{id,jdbcType=INTEGER}
+     </delete>
+     <delete id="deleteByQuery" parameterType="com.ygjt.gdn.psp.model.UserQuery">
+          delete from tb_user
+          <if test="_parameter != null">
+               <include refid="Query_Where_Clause" />
+          </if>
+     </delete>
+     <insert id="insert" parameterType="com.ygjt.gdn.psp.model.UserDo">
+          <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+               SELECT LAST_INSERT_ID()
+          </selectKey>
+          insert into tb_user (PARENT_ID, NAME, PWD, 
+               TYPE, TRUE_NAME, ADDR, 
+               MOBILE, EMAIL, CARD, 
+               STAT, SECRET_KEY, MEMO, 
+               CREATE_TIME, CREATE_USER, UPDATE_TIME, 
+               UPDATE_USER, IS_DETELE)
+          values (#{parentId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
+               #{type,jdbcType=CHAR}, #{trueName,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, 
+               #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{card,jdbcType=VARCHAR}, 
+               #{stat,jdbcType=CHAR}, #{secretKey,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, 
+               #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
+               #{updateUser,jdbcType=INTEGER}, #{isDetele,jdbcType=CHAR})
+     </insert>
+     <insert id="insertSelective" parameterType="com.ygjt.gdn.psp.model.UserDo">
+          <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+               SELECT LAST_INSERT_ID()
+          </selectKey>
+          insert into tb_user
+          <trim prefix="(" suffix=")" suffixOverrides=",">
+               <if test="parentId != null">
+                    PARENT_ID,
+               </if>
+               <if test="name != null">
+                    NAME,
+               </if>
+               <if test="pwd != null">
+                    PWD,
+               </if>
+               <if test="type != null">
+                    TYPE,
+               </if>
+               <if test="trueName != null">
+                    TRUE_NAME,
+               </if>
+               <if test="addr != null">
+                    ADDR,
+               </if>
+               <if test="mobile != null">
+                    MOBILE,
+               </if>
+               <if test="email != null">
+                    EMAIL,
+               </if>
+               <if test="card != null">
+                    CARD,
+               </if>
+               <if test="stat != null">
+                    STAT,
+               </if>
+               <if test="secretKey != null">
+                    SECRET_KEY,
+               </if>
+               <if test="memo != null">
+                    MEMO,
+               </if>
+               <if test="createTime != null">
+                    CREATE_TIME,
+               </if>
+               <if test="createUser != null">
+                    CREATE_USER,
+               </if>
+               <if test="updateTime != null">
+                    UPDATE_TIME,
+               </if>
+               <if test="updateUser != null">
+                    UPDATE_USER,
+               </if>
+               <if test="isDetele != null">
+                    IS_DETELE,
+               </if>
+          </trim>
+          <trim prefix="values (" suffix=")" suffixOverrides=",">
+               <if test="parentId != null">
+                    #{parentId,jdbcType=INTEGER},
+               </if>
+               <if test="name != null">
+                    #{name,jdbcType=VARCHAR},
+               </if>
+               <if test="pwd != null">
+                    #{pwd,jdbcType=VARCHAR},
+               </if>
+               <if test="type != null">
+                    #{type,jdbcType=CHAR},
+               </if>
+               <if test="trueName != null">
+                    #{trueName,jdbcType=VARCHAR},
+               </if>
+               <if test="addr != null">
+                    #{addr,jdbcType=VARCHAR},
+               </if>
+               <if test="mobile != null">
+                    #{mobile,jdbcType=VARCHAR},
+               </if>
+               <if test="email != null">
+                    #{email,jdbcType=VARCHAR},
+               </if>
+               <if test="card != null">
+                    #{card,jdbcType=VARCHAR},
+               </if>
+               <if test="stat != null">
+                    #{stat,jdbcType=CHAR},
+               </if>
+               <if test="secretKey != null">
+                    #{secretKey,jdbcType=VARCHAR},
+               </if>
+               <if test="memo != null">
+                    #{memo,jdbcType=VARCHAR},
+               </if>
+               <if test="createTime != null">
+                    #{createTime,jdbcType=TIMESTAMP},
+               </if>
+               <if test="createUser != null">
+                    #{createUser,jdbcType=INTEGER},
+               </if>
+               <if test="updateTime != null">
+                    #{updateTime,jdbcType=TIMESTAMP},
+               </if>
+               <if test="updateUser != null">
+                    #{updateUser,jdbcType=INTEGER},
+               </if>
+               <if test="isDetele != null">
+                    #{isDetele,jdbcType=CHAR},
+               </if>
+          </trim>
+     </insert>
+     <select id="countByQuery" parameterType="com.ygjt.gdn.psp.model.UserQuery" resultType="java.lang.Integer">
+          select count(*) from tb_user
+          <if test="_parameter != null">
+               <include refid="Query_Where_Clause" />
+          </if>
+     </select>
+     <update id="updateByQuerySelective" parameterType="map">
+          update tb_user
+          <set>
+               <if test="record.id != null">
+                    ID = #{record.id,jdbcType=INTEGER},
+               </if>
+               <if test="record.parentId != null">
+                    PARENT_ID = #{record.parentId,jdbcType=INTEGER},
+               </if>
+               <if test="record.name != null">
+                    NAME = #{record.name,jdbcType=VARCHAR},
+               </if>
+               <if test="record.pwd != null">
+                    PWD = #{record.pwd,jdbcType=VARCHAR},
+               </if>
+               <if test="record.type != null">
+                    TYPE = #{record.type,jdbcType=CHAR},
+               </if>
+               <if test="record.trueName != null">
+                    TRUE_NAME = #{record.trueName,jdbcType=VARCHAR},
+               </if>
+               <if test="record.addr != null">
+                    ADDR = #{record.addr,jdbcType=VARCHAR},
+               </if>
+               <if test="record.mobile != null">
+                    MOBILE = #{record.mobile,jdbcType=VARCHAR},
+               </if>
+               <if test="record.email != null">
+                    EMAIL = #{record.email,jdbcType=VARCHAR},
+               </if>
+               <if test="record.card != null">
+                    CARD = #{record.card,jdbcType=VARCHAR},
+               </if>
+               <if test="record.stat != null">
+                    STAT = #{record.stat,jdbcType=CHAR},
+               </if>
+               <if test="record.secretKey != null">
+                    SECRET_KEY = #{record.secretKey,jdbcType=VARCHAR},
+               </if>
+               <if test="record.memo != null">
+                    MEMO = #{record.memo,jdbcType=VARCHAR},
+               </if>
+               <if test="record.createTime != null">
+                    CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+               </if>
+               <if test="record.createUser != null">
+                    CREATE_USER = #{record.createUser,jdbcType=INTEGER},
+               </if>
+               <if test="record.updateTime != null">
+                    UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+               </if>
+               <if test="record.updateUser != null">
+                    UPDATE_USER = #{record.updateUser,jdbcType=INTEGER},
+               </if>
+               <if test="record.isDetele != null">
+                    IS_DETELE = #{record.isDetele,jdbcType=CHAR},
+               </if>
+          </set>
+          <if test="_parameter != null">
+               <include refid="Update_By_Query_Where_Clause" />
+          </if>
+     </update>
+     <update id="updateByQuery" parameterType="map">
+          update tb_user
+          set ID = #{record.id,jdbcType=INTEGER},
+               PARENT_ID = #{record.parentId,jdbcType=INTEGER},
+               NAME = #{record.name,jdbcType=VARCHAR},
+               PWD = #{record.pwd,jdbcType=VARCHAR},
+               TYPE = #{record.type,jdbcType=CHAR},
+               TRUE_NAME = #{record.trueName,jdbcType=VARCHAR},
+               ADDR = #{record.addr,jdbcType=VARCHAR},
+               MOBILE = #{record.mobile,jdbcType=VARCHAR},
+               EMAIL = #{record.email,jdbcType=VARCHAR},
+               CARD = #{record.card,jdbcType=VARCHAR},
+               STAT = #{record.stat,jdbcType=CHAR},
+               SECRET_KEY = #{record.secretKey,jdbcType=VARCHAR},
+               MEMO = #{record.memo,jdbcType=VARCHAR},
+               CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+               CREATE_USER = #{record.createUser,jdbcType=INTEGER},
+               UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+               UPDATE_USER = #{record.updateUser,jdbcType=INTEGER},
+               IS_DETELE = #{record.isDetele,jdbcType=CHAR}
+          <if test="_parameter != null">
+               <include refid="Update_By_Query_Where_Clause" />
+          </if>
+     </update>
+     <update id="updateByPrimaryKeySelective" parameterType="com.ygjt.gdn.psp.model.UserDo">
+          update tb_user
+          <set>
+               <if test="parentId != null">
+                    PARENT_ID = #{parentId,jdbcType=INTEGER},
+               </if>
+               <if test="name != null">
+                    NAME = #{name,jdbcType=VARCHAR},
+               </if>
+               <if test="pwd != null">
+                    PWD = #{pwd,jdbcType=VARCHAR},
+               </if>
+               <if test="type != null">
+                    TYPE = #{type,jdbcType=CHAR},
+               </if>
+               <if test="trueName != null">
+                    TRUE_NAME = #{trueName,jdbcType=VARCHAR},
+               </if>
+               <if test="addr != null">
+                    ADDR = #{addr,jdbcType=VARCHAR},
+               </if>
+               <if test="mobile != null">
+                    MOBILE = #{mobile,jdbcType=VARCHAR},
+               </if>
+               <if test="email != null">
+                    EMAIL = #{email,jdbcType=VARCHAR},
+               </if>
+               <if test="card != null">
+                    CARD = #{card,jdbcType=VARCHAR},
+               </if>
+               <if test="stat != null">
+                    STAT = #{stat,jdbcType=CHAR},
+               </if>
+               <if test="secretKey != null">
+                    SECRET_KEY = #{secretKey,jdbcType=VARCHAR},
+               </if>
+               <if test="memo != null">
+                    MEMO = #{memo,jdbcType=VARCHAR},
+               </if>
+               <if test="createTime != null">
+                    CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+               </if>
+               <if test="createUser != null">
+                    CREATE_USER = #{createUser,jdbcType=INTEGER},
+               </if>
+               <if test="updateTime != null">
+                    UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+               </if>
+               <if test="updateUser != null">
+                    UPDATE_USER = #{updateUser,jdbcType=INTEGER},
+               </if>
+               <if test="isDetele != null">
+                    IS_DETELE = #{isDetele,jdbcType=CHAR},
+               </if>
+          </set>
+          where ID = #{id,jdbcType=INTEGER}
+     </update>
+     <update id="updateByPrimaryKey" parameterType="com.ygjt.gdn.psp.model.UserDo">
+          update tb_user
+          set PARENT_ID = #{parentId,jdbcType=INTEGER},
+               NAME = #{name,jdbcType=VARCHAR},
+               PWD = #{pwd,jdbcType=VARCHAR},
+               TYPE = #{type,jdbcType=CHAR},
+               TRUE_NAME = #{trueName,jdbcType=VARCHAR},
+               ADDR = #{addr,jdbcType=VARCHAR},
+               MOBILE = #{mobile,jdbcType=VARCHAR},
+               EMAIL = #{email,jdbcType=VARCHAR},
+               CARD = #{card,jdbcType=VARCHAR},
+               STAT = #{stat,jdbcType=CHAR},
+               SECRET_KEY = #{secretKey,jdbcType=VARCHAR},
+               MEMO = #{memo,jdbcType=VARCHAR},
+               CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+               CREATE_USER = #{createUser,jdbcType=INTEGER},
+               UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+               UPDATE_USER = #{updateUser,jdbcType=INTEGER},
+               IS_DETELE = #{isDetele,jdbcType=CHAR}
+          where ID = #{id,jdbcType=INTEGER}
+     </update>
+</mapper>
