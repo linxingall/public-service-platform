@@ -24,11 +24,6 @@
                                 validators: {
                                     notEmpty: {
                                         message: '用户名不能为空'
-                                    },
-                                    stringLength: {
-                                        min: 6,
-                                        max: 30,
-                                        message: '用户名长度需在6-30个字符'
                                     }
 
                                 }
@@ -40,18 +35,18 @@
                                     }
                                 }
                             },
-                            validateCode: {
-                                validators: {
-                                    notEmpty: {
-                                        message: '验证码不能为空'
-                                    }/*,
-                                    remote: {
-                                        url: 'checkValidImg.htm',
-
-                                        message: '验证码错误'
-                                    }*/
-                                }
-                            }
+//                            validateCode: {
+//                                validators: {
+//                                    notEmpty: {
+//                                        message: '验证码不能为空'
+//                                    }/*,
+//                                    remote: {
+//                                        url: 'checkValidImg.htm',
+//
+//                                        message: '验证码错误'
+//                                    }*/
+//                                }
+//                            }
                         }
                     })
                     .on('success.form.bv', function(e) {
@@ -110,16 +105,16 @@
                         <div class="form-group">
                             <input type="password" class="form-control input-lg" placeholder="密码"id="pwd" name="pwd">
                         </div>
-                        <div class="form-group col-md-6">
+                        <#--<div class="form-group col-md-6">-->
 
-                            <div class="input-group">
-                                <input type="text" class="form-control"
-                                       id="validateCode" name="validateCode"
-                                       placeholder="六位字符验证码">
-                                <img id="captcha"
-                                     src='/validimg.htm' onClick="this.src='/validimg.htm?t=' + Math.random();" >
-                            </div>
-                        </div>
+                            <#--<div class="input-group">-->
+                                <#--<input type="text" class="form-control"-->
+                                       <#--id="validateCode" name="validateCode"-->
+                                       <#--placeholder="六位字符验证码">-->
+                                <#--<img id="captcha"-->
+                                     <#--src='/validimg.htm' onClick="this.src='/validimg.htm?t=' + Math.random();" >-->
+                            <#--</div>-->
+                        <#--</div>-->
                         <div class="form-group">
                             <button class="btn btn-primary btn-lg btn-block">立刻登录</button>
                             <span><a href="#">找回密码</a></span>

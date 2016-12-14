@@ -1,11 +1,9 @@
 package com.ygjt.gdn.psp.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.ygjt.gdn.psp.controller.common.ResultFactory;
 import com.ygjt.gdn.psp.controller.common.model.AjaxJson;
 import com.ygjt.gdn.psp.controller.common.model.LoginUserModel;
 import com.ygjt.gdn.psp.controller.common.model.RegisterUserModel;
-import com.ygjt.gdn.psp.controller.common.model.ResultData;
 import com.ygjt.gdn.psp.controller.common.valid.handle.IValidateHandle;
 import com.ygjt.gdn.psp.exception.ServiceException;
 import com.ygjt.gdn.psp.exception.ValidateException;
@@ -23,7 +21,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -64,20 +61,11 @@ public class HomeController extends BaseController{
         return new ModelAndView("login");
     }
 
-    /**
-     * 推荐写法
-     * @param user
-     * @param validateCode
-     * @param session
-     * @param request
-     * @param response
-     * @return
-     */
     @RequestMapping("doLogin")
-    @ResponseBody
-    public ResultData<?> doLogin(LoginUserModel user, String validateCode, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+    public void doLogin(LoginUserModel user,String validateCode,HttpSession session,HttpServletRequest request,HttpServletResponse response) {
+        AjaxJson resJson = new AjaxJson();
         try {
-            checkValidImg(validateCode,request);
+           // checkValidImg(validateCode,request);
             validateHandle.validate(user);
             UserDo userDo = new UserDo();
             BeanUtils.copyProperties(user,userDo);
@@ -85,11 +73,14 @@ public class HomeController extends BaseController{
             // 验证通过，将登录信息存在session
             session.setAttribute(Constants.USER_AGENT_IN_REQUEST, resUser);
         }catch (ValidateException e) {
-            return ResultFactory.createFailResultData(e.getMessage(), null);
+            resJson.setResult(false);
+            resJson.setMsg(e.getMessage());
         } catch (ServiceException e) {
-            return ResultFactory.createFailResultData(e.getMessage(), null);
+            resJson.setResult(false);
+            resJson.setMsg(e.getMessage());
         }
-        return ResultFactory.createSuccessResultData(null);
+        super.writeJsonWithUtf8(JSONObject.toJSONString(resJson),response);
+
     }
 
     @RequestMapping("register")

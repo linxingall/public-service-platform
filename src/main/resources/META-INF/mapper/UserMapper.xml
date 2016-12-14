@@ -3,6 +3,10 @@
 <mapper namespace="com.ygjt.gdn.psp.persistence.UserDao">
      <resultMap id="BaseResultMap" type="com.ygjt.gdn.psp.model.UserDo">
           <id column="ID" jdbcType="INTEGER" property="id" />
+          <result column="CREATED_DT" jdbcType="TIMESTAMP" property="createdDt" />
+          <result column="CREATED_BY" jdbcType="INTEGER" property="createdBy" />
+          <result column="LASTUPDATE_DT" jdbcType="TIMESTAMP" property="lastupdateDt" />
+          <result column="LASTUPDATE_BY" jdbcType="INTEGER" property="lastupdateBy" />
           <result column="PARENT_ID" jdbcType="INTEGER" property="parentId" />
           <result column="NAME" jdbcType="VARCHAR" property="name" />
           <result column="PWD" jdbcType="VARCHAR" property="pwd" />
@@ -13,13 +17,9 @@
           <result column="EMAIL" jdbcType="VARCHAR" property="email" />
           <result column="CARD" jdbcType="VARCHAR" property="card" />
           <result column="STAT" jdbcType="CHAR" property="stat" />
-          <result column="SECRET_KEY" jdbcType="VARCHAR" property="secretKey" />
+          <result column="SALT" jdbcType="VARCHAR" property="salt" />
           <result column="MEMO" jdbcType="VARCHAR" property="memo" />
-          <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
-          <result column="CREATE_USER" jdbcType="INTEGER" property="createUser" />
-          <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
-          <result column="UPDATE_USER" jdbcType="INTEGER" property="updateUser" />
-          <result column="IS_DETELE" jdbcType="CHAR" property="isDetele" />
+          <result column="PWD2" jdbcType="VARCHAR" property="pwd2" />
      </resultMap>
      <sql id="Query_Where_Clause">
           <where>
@@ -80,8 +80,8 @@
           </where>
      </sql>
      <sql id="Base_Column_List">
-          ID, PARENT_ID, NAME, PWD, TYPE, TRUE_NAME, ADDR, MOBILE, EMAIL, CARD, STAT, SECRET_KEY, 
-          MEMO, CREATE_TIME, CREATE_USER, UPDATE_TIME, UPDATE_USER, IS_DETELE
+          ID, CREATED_DT, CREATED_BY, LASTUPDATE_DT, LASTUPDATE_BY, PARENT_ID, NAME, PWD, TYPE, 
+          TRUE_NAME, ADDR, MOBILE, EMAIL, CARD, STAT, SALT, MEMO, PWD2
      </sql>
      <select id="selectByQuery" parameterType="com.ygjt.gdn.psp.model.UserQuery" resultMap="BaseResultMap">
           select
@@ -117,18 +117,18 @@
           <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
                SELECT LAST_INSERT_ID()
           </selectKey>
-          insert into tb_user (PARENT_ID, NAME, PWD, 
-               TYPE, TRUE_NAME, ADDR, 
-               MOBILE, EMAIL, CARD, 
-               STAT, SECRET_KEY, MEMO, 
-               CREATE_TIME, CREATE_USER, UPDATE_TIME, 
-               UPDATE_USER, IS_DETELE)
-          values (#{parentId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
-               #{type,jdbcType=CHAR}, #{trueName,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, 
-               #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{card,jdbcType=VARCHAR}, 
-               #{stat,jdbcType=CHAR}, #{secretKey,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, 
-               #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
-               #{updateUser,jdbcType=INTEGER}, #{isDetele,jdbcType=CHAR})
+          insert into tb_user (CREATED_DT, CREATED_BY, LASTUPDATE_DT, 
+               LASTUPDATE_BY, PARENT_ID, NAME, 
+               PWD, TYPE, TRUE_NAME, 
+               ADDR, MOBILE, EMAIL, 
+               CARD, STAT, SALT, MEMO, 
+               PWD2)
+          values (#{createdDt,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=INTEGER}, #{lastupdateDt,jdbcType=TIMESTAMP}, 
+               #{lastupdateBy,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+               #{pwd,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, #{trueName,jdbcType=VARCHAR}, 
+               #{addr,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+               #{card,jdbcType=VARCHAR}, #{stat,jdbcType=CHAR}, #{salt,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, 
+               #{pwd2,jdbcType=VARCHAR})
      </insert>
      <insert id="insertSelective" parameterType="com.ygjt.gdn.psp.model.UserDo">
           <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -136,6 +136,18 @@
           </selectKey>
           insert into tb_user
           <trim prefix="(" suffix=")" suffixOverrides=",">
+               <if test="createdDt != null">
+                    CREATED_DT,
+               </if>
+               <if test="createdBy != null">
+                    CREATED_BY,
+               </if>
+               <if test="lastupdateDt != null">
+                    LASTUPDATE_DT,
+               </if>
+               <if test="lastupdateBy != null">
+                    LASTUPDATE_BY,
+               </if>
                <if test="parentId != null">
                     PARENT_ID,
                </if>
@@ -166,29 +178,29 @@
                <if test="stat != null">
                     STAT,
                </if>
-               <if test="secretKey != null">
-                    SECRET_KEY,
+               <if test="salt != null">
+                    SALT,
                </if>
                <if test="memo != null">
                     MEMO,
                </if>
-               <if test="createTime != null">
-                    CREATE_TIME,
-               </if>
-               <if test="createUser != null">
-                    CREATE_USER,
-               </if>
-               <if test="updateTime != null">
-                    UPDATE_TIME,
-               </if>
-               <if test="updateUser != null">
-                    UPDATE_USER,
-               </if>
-               <if test="isDetele != null">
-                    IS_DETELE,
+               <if test="pwd2 != null">
+                    PWD2,
                </if>
           </trim>
           <trim prefix="values (" suffix=")" suffixOverrides=",">
+               <if test="createdDt != null">
+                    #{createdDt,jdbcType=TIMESTAMP},
+               </if>
+               <if test="createdBy != null">
+                    #{createdBy,jdbcType=INTEGER},
+               </if>
+               <if test="lastupdateDt != null">
+                    #{lastupdateDt,jdbcType=TIMESTAMP},
+               </if>
+               <if test="lastupdateBy != null">
+                    #{lastupdateBy,jdbcType=INTEGER},
+               </if>
                <if test="parentId != null">
                     #{parentId,jdbcType=INTEGER},
                </if>
@@ -219,26 +231,14 @@
                <if test="stat != null">
                     #{stat,jdbcType=CHAR},
                </if>
-               <if test="secretKey != null">
-                    #{secretKey,jdbcType=VARCHAR},
+               <if test="salt != null">
+                    #{salt,jdbcType=VARCHAR},
                </if>
                <if test="memo != null">
                     #{memo,jdbcType=VARCHAR},
                </if>
-               <if test="createTime != null">
-                    #{createTime,jdbcType=TIMESTAMP},
-               </if>
-               <if test="createUser != null">
-                    #{createUser,jdbcType=INTEGER},
-               </if>
-               <if test="updateTime != null">
-                    #{updateTime,jdbcType=TIMESTAMP},
-               </if>
-               <if test="updateUser != null">
-                    #{updateUser,jdbcType=INTEGER},
-               </if>
-               <if test="isDetele != null">
-                    #{isDetele,jdbcType=CHAR},
+               <if test="pwd2 != null">
+                    #{pwd2,jdbcType=VARCHAR},
                </if>
           </trim>
      </insert>
@@ -253,6 +253,18 @@
           <set>
                <if test="record.id != null">
                     ID = #{record.id,jdbcType=INTEGER},
+               </if>
+               <if test="record.createdDt != null">
+                    CREATED_DT = #{record.createdDt,jdbcType=TIMESTAMP},
+               </if>
+               <if test="record.createdBy != null">
+                    CREATED_BY = #{record.createdBy,jdbcType=INTEGER},
+               </if>
+               <if test="record.lastupdateDt != null">
+                    LASTUPDATE_DT = #{record.lastupdateDt,jdbcType=TIMESTAMP},
+               </if>
+               <if test="record.lastupdateBy != null">
+                    LASTUPDATE_BY = #{record.lastupdateBy,jdbcType=INTEGER},
                </if>
                <if test="record.parentId != null">
                     PARENT_ID = #{record.parentId,jdbcType=INTEGER},
@@ -284,26 +296,14 @@
                <if test="record.stat != null">
                     STAT = #{record.stat,jdbcType=CHAR},
                </if>
-               <if test="record.secretKey != null">
-                    SECRET_KEY = #{record.secretKey,jdbcType=VARCHAR},
+               <if test="record.salt != null">
+                    SALT = #{record.salt,jdbcType=VARCHAR},
                </if>
                <if test="record.memo != null">
                     MEMO = #{record.memo,jdbcType=VARCHAR},
                </if>
-               <if test="record.createTime != null">
-                    CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
-               </if>
-               <if test="record.createUser != null">
-                    CREATE_USER = #{record.createUser,jdbcType=INTEGER},
-               </if>
-               <if test="record.updateTime != null">
-                    UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
-               </if>
-               <if test="record.updateUser != null">
-                    UPDATE_USER = #{record.updateUser,jdbcType=INTEGER},
-               </if>
-               <if test="record.isDetele != null">
-                    IS_DETELE = #{record.isDetele,jdbcType=CHAR},
+               <if test="record.pwd2 != null">
+                    PWD2 = #{record.pwd2,jdbcType=VARCHAR},
                </if>
           </set>
           <if test="_parameter != null">
@@ -313,6 +313,10 @@
      <update id="updateByQuery" parameterType="map">
           update tb_user
           set ID = #{record.id,jdbcType=INTEGER},
+               CREATED_DT = #{record.createdDt,jdbcType=TIMESTAMP},
+               CREATED_BY = #{record.createdBy,jdbcType=INTEGER},
+               LASTUPDATE_DT = #{record.lastupdateDt,jdbcType=TIMESTAMP},
+               LASTUPDATE_BY = #{record.lastupdateBy,jdbcType=INTEGER},
                PARENT_ID = #{record.parentId,jdbcType=INTEGER},
                NAME = #{record.name,jdbcType=VARCHAR},
                PWD = #{record.pwd,jdbcType=VARCHAR},
@@ -323,13 +327,9 @@
                EMAIL = #{record.email,jdbcType=VARCHAR},
                CARD = #{record.card,jdbcType=VARCHAR},
                STAT = #{record.stat,jdbcType=CHAR},
-               SECRET_KEY = #{record.secretKey,jdbcType=VARCHAR},
+               SALT = #{record.salt,jdbcType=VARCHAR},
                MEMO = #{record.memo,jdbcType=VARCHAR},
-               CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
-               CREATE_USER = #{record.createUser,jdbcType=INTEGER},
-               UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
-               UPDATE_USER = #{record.updateUser,jdbcType=INTEGER},
-               IS_DETELE = #{record.isDetele,jdbcType=CHAR}
+               PWD2 = #{record.pwd2,jdbcType=VARCHAR}
           <if test="_parameter != null">
                <include refid="Update_By_Query_Where_Clause" />
           </if>
@@ -337,6 +337,18 @@
      <update id="updateByPrimaryKeySelective" parameterType="com.ygjt.gdn.psp.model.UserDo">
           update tb_user
           <set>
+               <if test="createdDt != null">
+                    CREATED_DT = #{createdDt,jdbcType=TIMESTAMP},
+               </if>
+               <if test="createdBy != null">
+                    CREATED_BY = #{createdBy,jdbcType=INTEGER},
+               </if>
+               <if test="lastupdateDt != null">
+                    LASTUPDATE_DT = #{lastupdateDt,jdbcType=TIMESTAMP},
+               </if>
+               <if test="lastupdateBy != null">
+                    LASTUPDATE_BY = #{lastupdateBy,jdbcType=INTEGER},
+               </if>
                <if test="parentId != null">
                     PARENT_ID = #{parentId,jdbcType=INTEGER},
                </if>
@@ -367,33 +379,25 @@
                <if test="stat != null">
                     STAT = #{stat,jdbcType=CHAR},
                </if>
-               <if test="secretKey != null">
-                    SECRET_KEY = #{secretKey,jdbcType=VARCHAR},
+               <if test="salt != null">
+                    SALT = #{salt,jdbcType=VARCHAR},
                </if>
                <if test="memo != null">
                     MEMO = #{memo,jdbcType=VARCHAR},
                </if>
-               <if test="createTime != null">
-                    CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-               </if>
-               <if test="createUser != null">
-                    CREATE_USER = #{createUser,jdbcType=INTEGER},
-               </if>
-               <if test="updateTime != null">
-                    UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
-               </if>
-               <if test="updateUser != null">
-                    UPDATE_USER = #{updateUser,jdbcType=INTEGER},
-               </if>
-               <if test="isDetele != null">
-                    IS_DETELE = #{isDetele,jdbcType=CHAR},
+               <if test="pwd2 != null">
+                    PWD2 = #{pwd2,jdbcType=VARCHAR},
                </if>
           </set>
           where ID = #{id,jdbcType=INTEGER}
      </update>
      <update id="updateByPrimaryKey" parameterType="com.ygjt.gdn.psp.model.UserDo">
           update tb_user
-          set PARENT_ID = #{parentId,jdbcType=INTEGER},
+          set CREATED_DT = #{createdDt,jdbcType=TIMESTAMP},
+               CREATED_BY = #{createdBy,jdbcType=INTEGER},
+               LASTUPDATE_DT = #{lastupdateDt,jdbcType=TIMESTAMP},
+               LASTUPDATE_BY = #{lastupdateBy,jdbcType=INTEGER},
+               PARENT_ID = #{parentId,jdbcType=INTEGER},
                NAME = #{name,jdbcType=VARCHAR},
                PWD = #{pwd,jdbcType=VARCHAR},
                TYPE = #{type,jdbcType=CHAR},
@@ -403,13 +407,9 @@
                EMAIL = #{email,jdbcType=VARCHAR},
                CARD = #{card,jdbcType=VARCHAR},
                STAT = #{stat,jdbcType=CHAR},
-               SECRET_KEY = #{secretKey,jdbcType=VARCHAR},
+               SALT = #{salt,jdbcType=VARCHAR},
                MEMO = #{memo,jdbcType=VARCHAR},
-               CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-               CREATE_USER = #{createUser,jdbcType=INTEGER},
-               UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
-               UPDATE_USER = #{updateUser,jdbcType=INTEGER},
-               IS_DETELE = #{isDetele,jdbcType=CHAR}
+               PWD2 = #{pwd2,jdbcType=VARCHAR}
           where ID = #{id,jdbcType=INTEGER}
      </update>
 </mapper>

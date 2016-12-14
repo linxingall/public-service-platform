@@ -32,9 +32,6 @@ public class UserServiceImpl implements UserService{
         isExistName(userDo.getName());
         userDo.setStat(UserEnum.USER_STAT.YES.getValue());
         userDo.setType(UserEnum.USER_TYPE.COMPANY.getValue());
-        userDo.setCreateTime(new Date());
-        userDo.setSecretKey(UUIDUtils.getCharAndNumr(10));//十位秘钥
-        userDo.setPwd(new SHA1().getDigestOfString((userDo.getPwd()+userDo.getSecretKey()).getBytes()));
         userDao.insert(userDo);
     }
 
@@ -60,9 +57,9 @@ public class UserServiceImpl implements UserService{
             throw new ServiceException("用户不存在");
         }
         UserDo resUser = userDos.get(0);
-        if(!new SHA1().getDigestOfString((userDo.getPwd()+resUser.getSecretKey()).getBytes()).equals(resUser.getPwd())){
-            throw new ServiceException("用户名或密码有误");
-        }
+//        if(!new SHA1().getDigestOfString((userDo.getPwd()+resUser.getSecretKey()).getBytes()).equals(resUser.getPwd())){
+//            throw new ServiceException("用户名或密码有误");
+//        }
         return resUser;
     }
 }

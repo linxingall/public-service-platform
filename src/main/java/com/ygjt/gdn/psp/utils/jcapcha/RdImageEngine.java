@@ -20,8 +20,7 @@ public class RdImageEngine extends ListImageCaptchaEngine {
 	
 	@Override  
     protected void buildInitialFactories() {  
-		int num = 6;//个数
-		num = num==0?5:num;//默认为5个
+		int num = 4;//个数
     	WordGenerator wgen =  new RandomWordGenerator("abcdefghijklmnopqrstuvwxyz123456789");
     	RandomRangeColorGenerator cgen = new RandomRangeColorGenerator(
     	new int[] { 0, 100 }, new int[] { 0, 100 },

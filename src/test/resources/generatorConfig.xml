@@ -20,8 +20,8 @@
       <property name="addRemarkComments" value="true"/>
 	  <property name="javaFileEncoding" value="UTF-8"/>
     </commentGenerator>
-    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://118.178.18.239:3306/psp?characterEncoding=UTF-8"
-      userId="dev" password="gdn2016">
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/psp?characterEncoding=UTF-8"
+      userId="root" password="root">
     </jdbcConnection>
 
     <javaTypeResolver>

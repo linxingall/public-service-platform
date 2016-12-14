@@ -8,9 +8,34 @@ import java.util.Date;
  */
 public class UserDo extends BaseBean implements Serializable {
     /**
+     * ID
      * tb_user.ID
      */
     private Integer id;
+
+    /**
+     * 创建时间
+     * tb_user.CREATED_DT
+     */
+    private Date createdDt;
+
+    /**
+     * 创建人
+     * tb_user.CREATED_BY
+     */
+    private Integer createdBy;
+
+    /**
+     * 最后更新时间
+     * tb_user.LASTUPDATE_DT
+     */
+    private Date lastupdateDt;
+
+    /**
+     * 最后更新人
+     * tb_user.LASTUPDATE_BY
+     */
+    private Integer lastupdateBy;
 
     /**
      * 父账号id
@@ -67,16 +92,16 @@ public class UserDo extends BaseBean implements Serializable {
     private String card;
 
     /**
-     * 1.激活 0.未激活
+     * 1.有效 0.失效
      * tb_user.STAT
      */
     private String stat;
 
     /**
-     * 秘钥
-     * tb_user.SECRET_KEY
+     * 盐
+     * tb_user.SALT
      */
-    private String secretKey;
+    private String salt;
 
     /**
      * 备注
@@ -85,29 +110,10 @@ public class UserDo extends BaseBean implements Serializable {
     private String memo;
 
     /**
-     * tb_user.CREATE_TIME
+     * 密码2
+     * tb_user.PWD2
      */
-    private Date createTime;
-
-    /**
-     * tb_user.CREATE_USER
-     */
-    private Integer createUser;
-
-    /**
-     * tb_user.UPDATE_TIME
-     */
-    private Date updateTime;
-
-    /**
-     * tb_user.UPDATE_USER
-     */
-    private Integer updateUser;
-
-    /**
-     * tb_user.IS_DETELE
-     */
-    private String isDetele;
+    private String pwd2;
 
     /**
      * tb_user
@@ -128,6 +134,70 @@ public class UserDo extends BaseBean implements Serializable {
      */
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    /**
+     * tb_user.CREATED_DT
+     * @return the value of tb_user.CREATED_DT
+     */
+    public Date getCreatedDt() {
+        return createdDt;
+    }
+
+    /**
+     * tb_user.CREATED_DT
+     * @param createdDt the value for tb_user.CREATED_DT
+     */
+    public void setCreatedDt(Date createdDt) {
+        this.createdDt = createdDt;
+    }
+
+    /**
+     * tb_user.CREATED_BY
+     * @return the value of tb_user.CREATED_BY
+     */
+    public Integer getCreatedBy() {
+        return createdBy;
+    }
+
+    /**
+     * tb_user.CREATED_BY
+     * @param createdBy the value for tb_user.CREATED_BY
+     */
+    public void setCreatedBy(Integer createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    /**
+     * tb_user.LASTUPDATE_DT
+     * @return the value of tb_user.LASTUPDATE_DT
+     */
+    public Date getLastupdateDt() {
+        return lastupdateDt;
+    }
+
+    /**
+     * tb_user.LASTUPDATE_DT
+     * @param lastupdateDt the value for tb_user.LASTUPDATE_DT
+     */
+    public void setLastupdateDt(Date lastupdateDt) {
+        this.lastupdateDt = lastupdateDt;
+    }
+
+    /**
+     * tb_user.LASTUPDATE_BY
+     * @return the value of tb_user.LASTUPDATE_BY
+     */
+    public Integer getLastupdateBy() {
+        return lastupdateBy;
+    }
+
+    /**
+     * tb_user.LASTUPDATE_BY
+     * @param lastupdateBy the value for tb_user.LASTUPDATE_BY
+     */
+    public void setLastupdateBy(Integer lastupdateBy) {
+        this.lastupdateBy = lastupdateBy;
     }
 
     /**
@@ -291,19 +361,19 @@ public class UserDo extends BaseBean implements Serializable {
     }
 
     /**
-     * tb_user.SECRET_KEY
-     * @return the value of tb_user.SECRET_KEY
+     * tb_user.SALT
+     * @return the value of tb_user.SALT
      */
-    public String getSecretKey() {
-        return secretKey;
+    public String getSalt() {
+        return salt;
     }
 
     /**
-     * tb_user.SECRET_KEY
-     * @param secretKey the value for tb_user.SECRET_KEY
+     * tb_user.SALT
+     * @param salt the value for tb_user.SALT
      */
-    public void setSecretKey(String secretKey) {
-        this.secretKey = secretKey == null ? null : secretKey.trim();
+    public void setSalt(String salt) {
+        this.salt = salt == null ? null : salt.trim();
     }
 
     /**
@@ -323,83 +393,19 @@ public class UserDo extends BaseBean implements Serializable {
     }
 
     /**
-     * tb_user.CREATE_TIME
-     * @return the value of tb_user.CREATE_TIME
+     * tb_user.PWD2
+     * @return the value of tb_user.PWD2
      */
-    public Date getCreateTime() {
-        return createTime;
+    public String getPwd2() {
+        return pwd2;
     }
 
     /**
-     * tb_user.CREATE_TIME
-     * @param createTime the value for tb_user.CREATE_TIME
+     * tb_user.PWD2
+     * @param pwd2 the value for tb_user.PWD2
      */
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    /**
-     * tb_user.CREATE_USER
-     * @return the value of tb_user.CREATE_USER
-     */
-    public Integer getCreateUser() {
-        return createUser;
-    }
-
-    /**
-     * tb_user.CREATE_USER
-     * @param createUser the value for tb_user.CREATE_USER
-     */
-    public void setCreateUser(Integer createUser) {
-        this.createUser = createUser;
-    }
-
-    /**
-     * tb_user.UPDATE_TIME
-     * @return the value of tb_user.UPDATE_TIME
-     */
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    /**
-     * tb_user.UPDATE_TIME
-     * @param updateTime the value for tb_user.UPDATE_TIME
-     */
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    /**
-     * tb_user.UPDATE_USER
-     * @return the value of tb_user.UPDATE_USER
-     */
-    public Integer getUpdateUser() {
-        return updateUser;
-    }
-
-    /**
-     * tb_user.UPDATE_USER
-     * @param updateUser the value for tb_user.UPDATE_USER
-     */
-    public void setUpdateUser(Integer updateUser) {
-        this.updateUser = updateUser;
-    }
-
-    /**
-     * tb_user.IS_DETELE
-     * @return the value of tb_user.IS_DETELE
-     */
-    public String getIsDetele() {
-        return isDetele;
-    }
-
-    /**
-     * tb_user.IS_DETELE
-     * @param isDetele the value for tb_user.IS_DETELE
-     */
-    public void setIsDetele(String isDetele) {
-        this.isDetele = isDetele == null ? null : isDetele.trim();
+    public void setPwd2(String pwd2) {
+        this.pwd2 = pwd2 == null ? null : pwd2.trim();
     }
 
     /**
@@ -418,6 +424,10 @@ public class UserDo extends BaseBean implements Serializable {
         }
         UserDo other = (UserDo) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+            && (this.getCreatedDt() == null ? other.getCreatedDt() == null : this.getCreatedDt().equals(other.getCreatedDt()))
+            && (this.getCreatedBy() == null ? other.getCreatedBy() == null : this.getCreatedBy().equals(other.getCreatedBy()))
+            && (this.getLastupdateDt() == null ? other.getLastupdateDt() == null : this.getLastupdateDt().equals(other.getLastupdateDt()))
+            && (this.getLastupdateBy() == null ? other.getLastupdateBy() == null : this.getLastupdateBy().equals(other.getLastupdateBy()))
             && (this.getParentId() == null ? other.getParentId() == null : this.getParentId().equals(other.getParentId()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
             && (this.getPwd() == null ? other.getPwd() == null : this.getPwd().equals(other.getPwd()))
@@ -428,13 +438,9 @@ public class UserDo extends BaseBean implements Serializable {
             && (this.getEmail() == null ? other.getEmail() == null : this.getEmail().equals(other.getEmail()))
             && (this.getCard() == null ? other.getCard() == null : this.getCard().equals(other.getCard()))
             && (this.getStat() == null ? other.getStat() == null : this.getStat().equals(other.getStat()))
-            && (this.getSecretKey() == null ? other.getSecretKey() == null : this.getSecretKey().equals(other.getSecretKey()))
+            && (this.getSalt() == null ? other.getSalt() == null : this.getSalt().equals(other.getSalt()))
             && (this.getMemo() == null ? other.getMemo() == null : this.getMemo().equals(other.getMemo()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getCreateUser() == null ? other.getCreateUser() == null : this.getCreateUser().equals(other.getCreateUser()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
-            && (this.getUpdateUser() == null ? other.getUpdateUser() == null : this.getUpdateUser().equals(other.getUpdateUser()))
-            && (this.getIsDetele() == null ? other.getIsDetele() == null : this.getIsDetele().equals(other.getIsDetele()));
+            && (this.getPwd2() == null ? other.getPwd2() == null : this.getPwd2().equals(other.getPwd2()));
     }
 
     /**
@@ -445,6 +451,10 @@ public class UserDo extends BaseBean implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getCreatedDt() == null) ? 0 : getCreatedDt().hashCode());
+        result = prime * result + ((getCreatedBy() == null) ? 0 : getCreatedBy().hashCode());
+        result = prime * result + ((getLastupdateDt() == null) ? 0 : getLastupdateDt().hashCode());
+        result = prime * result + ((getLastupdateBy() == null) ? 0 : getLastupdateBy().hashCode());
         result = prime * result + ((getParentId() == null) ? 0 : getParentId().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         result = prime * result + ((getPwd() == null) ? 0 : getPwd().hashCode());
@@ -455,13 +465,9 @@ public class UserDo extends BaseBean implements Serializable {
         result = prime * result + ((getEmail() == null) ? 0 : getEmail().hashCode());
         result = prime * result + ((getCard() == null) ? 0 : getCard().hashCode());
         result = prime * result + ((getStat() == null) ? 0 : getStat().hashCode());
-        result = prime * result + ((getSecretKey() == null) ? 0 : getSecretKey().hashCode());
+        result = prime * result + ((getSalt() == null) ? 0 : getSalt().hashCode());
         result = prime * result + ((getMemo() == null) ? 0 : getMemo().hashCode());
-        result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
-        result = prime * result + ((getCreateUser() == null) ? 0 : getCreateUser().hashCode());
-        result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
-        result = prime * result + ((getUpdateUser() == null) ? 0 : getUpdateUser().hashCode());
-        result = prime * result + ((getIsDetele() == null) ? 0 : getIsDetele().hashCode());
+        result = prime * result + ((getPwd2() == null) ? 0 : getPwd2().hashCode());
         return result;
     }
 }
