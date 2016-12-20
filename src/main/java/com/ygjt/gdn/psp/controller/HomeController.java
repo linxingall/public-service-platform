@@ -5,13 +5,19 @@ import com.ygjt.gdn.psp.controller.common.model.AjaxJson;
 import com.ygjt.gdn.psp.controller.common.model.LoginUserModel;
 import com.ygjt.gdn.psp.controller.common.model.RegisterUserModel;
 import com.ygjt.gdn.psp.controller.common.valid.handle.IValidateHandle;
+import com.ygjt.gdn.psp.entity.OrderGoodsExport;
 import com.ygjt.gdn.psp.exception.ServiceException;
 import com.ygjt.gdn.psp.exception.ValidateException;
 import com.ygjt.gdn.psp.model.UserDo;
 import com.ygjt.gdn.psp.service.UserService;
+import com.ygjt.gdn.psp.third.YunMaYiUtil;
+import com.ygjt.gdn.psp.utils.BrowserUtils;
 import com.ygjt.gdn.psp.utils.Constants;
+import com.ygjt.gdn.psp.utils.ExcelUtil;
+import com.ygjt.gdn.psp.utils.UUIDUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +33,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.*;
 
 /**
  * Created by Je on 2016/6/30.
@@ -134,6 +143,46 @@ public class HomeController extends BaseController{
             resJson.setValid(false);
         }
         super.writeJsonWithUtf8(JSONObject.toJSONString(resJson),response);
+    }
+
+    @RequestMapping("downOrdes")
+    public void downOrdes( HttpServletRequest request,
+                                  HttpServletResponse response) {
+        response.setContentType("application/vnd.ms-excel");
+        String codedFileName = null;
+        OutputStream fOut = null;
+        try {
+            codedFileName = UUIDUtils.getPkid();
+            // 根据浏览器进行转码，使其支持中文文件名
+            if (BrowserUtils.isIE(request)) {
+                response.setHeader(
+                        "content-disposition",
+                        "attachment;filename="
+                                + java.net.URLEncoder.encode(codedFileName,
+                                "UTF-8") + ".xls");
+            } else {
+                String newtitle = new String(codedFileName.getBytes("UTF-8"),
+                        "ISO8859-1");
+                response.setHeader("content-disposition",
+                        "attachment;filename=" + newtitle + ".xls");
+            }
+            String startDate = request.getParameter("startDate");
+            String endDate = request.getParameter("endDate");
+            // 产生工作簿对象
+            HSSFWorkbook workbook = ExcelUtil.exportExcelNoTitle(codedFileName,
+                    YunMaYiUtil.queryOrders(startDate,endDate),OrderGoodsExport.class,null);
+            fOut = response.getOutputStream();
+            workbook.write(fOut);
+        } catch (Exception e) {
+            logger.error("导出理货列表异常：",e);
+        } finally {
+            try {
+                fOut.flush();
+                fOut.close();
+            } catch (IOException e) {
+
+            }
+        }
     }
 
 
