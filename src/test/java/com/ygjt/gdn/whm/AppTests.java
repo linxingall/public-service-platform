@@ -17,7 +17,6 @@ public class AppTests {
     public static int    port               = 8001;
 
     public static void main(String[] args) {
-
         try {
             if (testPort(port)) {
                 throw new BindException("The port:: [" + port + "]  " + "is already in Use...");
