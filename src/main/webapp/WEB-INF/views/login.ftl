@@ -1,132 +1,104 @@
-<html>
-<head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <title>登录</title>
-    <link rel="stylesheet" href="static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="static/css/bootstrapValidator.css">
-    <script src="static/js/jquery-1.11.3.min.js"></script>
-    <script src="static/js/bootstrap.min.js"></script>
-    <script src="static/js/bootstrapValidator.js"></script>
-    <script src="static/js/sha1.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#loginForm')
-                    .bootstrapValidator({
-                        message: '验证不通过',
-                        feedbackIcons: {
-                            valid: 'glyphicon glyphicon-ok',
-                            invalid: 'glyphicon glyphicon-remove',
-                            validating: 'glyphicon glyphicon-refresh'
-                        },
-                        fields: {
-                            name: {
-                                message: '用户名验证通过',
-                                validators: {
-                                    notEmpty: {
-                                        message: '用户名不能为空'
-                                    }
+<#assign title="登陆">
+<#include "common/layout.ftl" >
+<@head>
+<style>
+    .lg_txt02 ,.lg_txt01{
+        height: 41px;
+    }
+</style>
+<link rel="stylesheet" href="${base}/static/styles/css/login.css" />
+<script src="${base}/static/styles/js/sha1.js"></script>
+<script>
+    function f(event){
+        //网页内按下回车触发
+        if(event.keyCode==13)
+        {
+            login();
+        }
+    }
+    function login() {
+        var name =$('#name').val();
+        var pwd =$('#pwd').val();
+        var validateCode =$('#validateCode').val();
+        if (name==null||name==""){
+            $('#error').html('用户名必填');
+            return ;
+        }
+        if (pwd==null||pwd==""){
+            $('#error').html('密码必填');
+            return ;
+        }
 
-                                }
-                            },
-                            pwd: {
-                                validators: {
-                                    notEmpty: {
-                                        message: '密码不能为空'
-                                    }
-                                }
-                            },
-//                            validateCode: {
-//                                validators: {
-//                                    notEmpty: {
-//                                        message: '验证码不能为空'
-//                                    }/*,
-//                                    remote: {
-//                                        url: 'checkValidImg.htm',
-//
-//                                        message: '验证码错误'
-//                                    }*/
-//                                }
-//                            }
-                        }
-                    })
-                    .on('success.form.bv', function(e) {
-                        // Prevent form submission
-                        e.preventDefault();
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: 'doLogin.htm',
+            async:false,
+            data: { name : name,pwd:pwd,validateCode:validateCode },
+            success: function(data){
+                if(data.result){
+                        window.location="${base}/index.htm";
 
-                        // Get the form instance
-                        var $form = $(e.target);
+                }else{
+                    $('#error').html(data.msg);
+                    $('#captcha').click();
+                    $('#validateCode').val('');
+                }
+            },
+            error:function(){
+                $('#error').html("登录失败");
+                $('#validateCode').val('');
+            }
 
-                        // Get the BootstrapValidator instance
-                        var bv = $form.data('bootstrapValidator');
-
-                        // Use Ajax to submit form data
-                        $('#pwd').val(hex_sha1($('#pwd').val()));
-                        $.post($form.attr('action'), $form.serialize(), function(result) {
-                            //TODO 错误提示及跳转
-                            if(result.result){
-                                window.location="index.htm";
-                            }else{
-                                $('#errorContent').html(result.msg);
-                                $('#captcha').click();
-                            }
-                        }, 'json');
-                    });
         });
-    </script>
-    <style>
-        #captcha {
-            border-radius: 2px;
-            cursor: pointer;
-            position: absolute;
-            z-index: 3;
-            left: 0;
-            top: 0;
-        }
+    }
 
-        #validateCode {
-            padding-left: 110px;
-        }
-    </style>
-</head>
-<body>
-    <div id="loginModal" class="modal show">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close">x</button>
-                    <h1 class="text-center text-primary">登录</h1>
-                </div>
-                <div ><span style="color: red" id="errorContent"></span></div>
-                <div class="modal-body">
-                    <form action="/doLogin.htm" class="form col-md-12 center-block" id="loginForm">
-                        <div class="form-group">
-                            <input type="text" class="form-control input-lg" placeholder="用户名" id="name" name="name">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control input-lg" placeholder="密码"id="pwd" name="pwd">
-                        </div>
-                        <#--<div class="form-group col-md-6">-->
+    function  changeValidCode() {
+        $('#captcha').click();
+    }
 
-                            <#--<div class="input-group">-->
-                                <#--<input type="text" class="form-control"-->
-                                       <#--id="validateCode" name="validateCode"-->
-                                       <#--placeholder="六位字符验证码">-->
-                                <#--<img id="captcha"-->
-                                     <#--src='/validimg.htm' onClick="this.src='/validimg.htm?t=' + Math.random();" >-->
-                            <#--</div>-->
-                        <#--</div>-->
-                        <div class="form-group">
-                            <button class="btn btn-primary btn-lg btn-block">立刻登录</button>
-                            <span><a href="#">找回密码</a></span>
-                            <span><a href="#" class="pull-right">注册</a></span>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
+</script>
+</@head>
+
+<@body>
+
+<div class="login lg-banner1">
+    <div class="center" style="position: relative">
+        <div class="login_box support" style="">
+            <h3>用户登录</h3>
+            <div class="error" id="error"></div>
+            <form action="${base}/u/doLogin.htm" class="form" id="loginForm">
+                <div class="text_wp">
+
+                    <div class="lg_input form-group">
+                        <em class="ic02"></em>
+                        <input class="lg_txt01" style="font-size:12px;" type="text"  placeholder="请输入用户名" maxlength="12" id="name" name="userName" autofocus="autofocus" >
+                    </div>
+                    <div class="lg_input">
+                        <em class="ic03"></em>
+                        <input class="lg_txt01" style="font-size: 12px;" type="password"  placeholder="请输入登录密码" maxlength="20" id="pwd" name="password">
+                    </div>
+                    <div class="lg_input">
+                        <em class="ic04"></em>
+                        <input class="lg_txt02" style="font-size:12px;" type="text" placeholder="验证码" maxlength="5" id="validateCode" name="validateCode" onkeydown="f(event);">
+                        <span class="code_img">
+                        <b> <img id="captcha"
+                                 src='${base}/validimg.htm' onClick="this.src='${base}/validimg.htm?t=' + Math.random();" ></b>
+                        <a href="javascript:void(0);" onclick="changeValidCode();">换一张</a>
+                    </span>
+                    </div>
 
                 </div>
-            </div>
+            <#--  <div class="f12px" style="padding: 0 32px;margin-bottom: 14px;"><input class="" type="checkbox" style="cursor: pointer; ">记住密码</div>-->
+                <div class="login_btn" id="loginIn"><a href="javascript:void(0);" onclick="login();">登录</a></div>
+            </form>
+            <p class="lg_link">
+                <a href="${base}/u/register.htm" class="fl-left">马上注册</a>
+                <a href="#" class="fl-right">忘记密码？</a>
+            </p>
         </div>
     </div>
-</body>
+</div>
+
+</@body>
 </html>

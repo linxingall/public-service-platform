@@ -1,0 +1,26 @@
+@charset "utf-8";
+/* Order_chart01 */
+.Order_chart{position:absolute;top:0;left:0;right: 0; bottom:0; overflow-x:hidden; }
+.Order_chart .Order_ul{position:absolute;top:0;left:0;right: 0; bottom:0; height:100%; width:100%;min-height:700px;}
+.Order_chart li{ float:left;}
+.Order_chart li h5{ padding:20px; font-size:14px; color:#4c5f70;}
+
+.O_chart01{width:40%;height:29%;min-height:240px;border-top:none; border-right:1px solid #cde5ff; border-bottom:1px solid #cde5ff;}
+.O_chart01 ul{ margin:28px auto;}
+.O_chart01 ul li{ float:left; text-align:center; width:50%;color:#81898f; font-size:14px;}
+.O_chart01 .iconfont{font-size:48px;line-height:48px; color:#62a7fb;}
+.O_chart01 .history_00{ font-size:36px; color:#0088fe;
+    text-shadow:3px 3px 1px #ccd0d3;}
+
+.O_chart02{height:29%; width:60%;min-height:240px;}
+.O_chart02 table{ margin:30px auto; width:90%;}
+.O_chart02 tbody{ border:1px solid #0084ff; background-color:#c9e9fe;}
+.O_chart02 tbody th{ width:20%; height:118px;text-align:center; font-weight:400;color:#81898f;font-size:14px;}
+.O_chart02 .statistics_00{ text-shadow:3px 3px 1px #ccd0d3;font-size:36px; color:#0088fe;}
+
+.O_chart03{height:70%; width:40%;}
+
+.O_chart04{height:70%; width:60%; }
+.O_chart04 ul{margin:auto 40px auto 40px;border-bottom:1px dashed #0088fe; display:block; height:68px;}
+.O_chart04 ul li{ float:left; padding:4px 10px; width:20%; text-align:center; height:38px;line-height:24px; font-size:14px; color:#4c5f70;}
+.O_chart04 ul .iconfont_kk{ float:left; margin-right:6px;}

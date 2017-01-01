@@ -1,0 +1,15 @@
+$width: 360px; 
+$color: #F90 !default;
+$border: 1px solid #5bc0de; 
+ @mixin border-radius{
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+.box2{
+	width: $width; 
+	border: $border; 
+    color: $color;
+}
+button {
+    @include border-radius;
+}

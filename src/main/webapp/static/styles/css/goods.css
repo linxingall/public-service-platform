@@ -1,0 +1,194 @@
+.searchFilter{ background: #e6e6e6; padding-right: 0; border-bottom: 0px;}
+.searchFilter .list{ background: #fff;}
+.searchFilter .list a{ display: inline-block; padding: 0 15px; line-height: 30px;}
+.searchFilter .list input{ width: 90px; border: 1px solid #e6e6e6;}
+.searchFilter .list .button{ background: #ededed; height: 22px; line-height: 22px;}
+.searchFilter .name{ color: #999999; line-height: 30px;}
+.searchFilterLast{ height: 3px; background: #eee}
+.searchBigFilter{ padding: 0; margin-bottom: 15px;}
+.searchBigFilter .Miteam{ border-right: 1px solid #cfcfcf; line-height: 30px; text-align: center}
+.searchBigFilter .Miteam:nth-child(3){ border-right: 0}
+.searchBigFilter .Miteam a{ display: inline-block;}
+.searchBigFilter .Miteam.on{ background: #c9161c; color: #fff;}
+.searchTools{ margin-top: 15px; line-height: 35px; padding-left: 0px; background: #f3f3f3}
+.searchTools .iteam{ border: 0; border-right:1px solid #e6e6e6; background:none }
+.searchTools .default .iconfont2{ color: #fff; }
+.searchTools .up,.searchTools .down{ color: #c9161c;}
+.searchTools .searchPrice input{ height: 20px; line-height: 20px; width: 60px;  border:1px solid #e6e6e6; padding-left: 10px;}
+.searchTools .searchPrice{ padding-left: 10px;}
+.searchTools .searchPrice a{ background: #f2f2f2; display: inline-block; padding: 2px 10px; margin-left: 10px; line-height: 20px;}
+.searchTools .searchPrice a:hover{ background:#c9161c; color: #fff; }
+.searchTools .searchPage{ text-align: right; color: #999}
+.searchTools .searchPage a{ color: #999}
+.searchTools .searchPage a:hover{color:#c9161c }
+.searchTools .searchPage .iconfont2{ margin-left: 10px; font-size: 20px; color: #999}
+.searchTools .searchPage .iconfont2:hover{ color:#c9161c }
+.goodsiteam .goodsiteambox{ background: #fff;  border:1px solid #fff; padding: 10px;}
+.goodsiteam .goodsiteambox:hover{ box-shadow: 0 0 10px #ccc; border-color:#c9161c ; position: absolute; top: 0; left: 0; width: 272px; height: 410px; }
+.goodsiteam:hover{ position: relative; z-index: 9}
+
+.goods-img{ padding:10px 0px;}
+.goodsImgBox{ width:352px; height:auto; overflow:hidden;}
+.jqzoom{float:left;border:none;position:relative;padding:0px;cursor:pointer;margin:0px;display:block;}
+.jqzoom img{ background:url(http://www.lanrenzhijia.com/demo/images/loading.gif) no-repeat center center;}
+.zoomdiv{z-index:100;position:absolute;top:0px;left:0px;width:350px;height:350px;background:#ffffff;border:1px solid #CCCCCC;display:none;text-align:center;overflow:hidden;}
+.jqZoomPup{z-index:10;visibility:hidden;position:absolute;top:0px;left:0px;width:20px;height:20px;border:1px solid #aaa;background:#ffffff /*url(../images/zoom.png) 50% center no-repeat*/;opacity: 0.5;-moz-opacity: 0.5;-khtml-opacity: 0.5;filter: alpha(Opacity=50);}
+.spec-preview{width:352px;height:352px;border:1px solid #DFDFDF;}
+.spec-scroll{clear:both;margin-top:5px;width:352px;}
+.spec-scroll .prev{float:left;margin-right:4px;}
+.spec-scroll .next{float:right;}
+.spec-scroll .prev,.spec-scroll .next{display:block;font-family:"宋体";text-align:center;width:10px;height:54px; line-height:54px;border:1px solid #CCC;background:#EBEBEB;cursor:pointer;text-decoration:none;}
+.spec-scroll .items{float:left;position:relative;width:322px;height:56px;overflow:hidden;}
+.spec-scroll .items ul{position:absolute;width:999999px;height:56px;}
+.spec-scroll .items ul li{float:left;width:64px;text-align:center;}
+.spec-scroll .items ul li img{border:1px solid #e6e6e6;padding:2px;width:50px;height:50px;}
+.spec-scroll .items ul li img:hover{border:2px solid #c9161c;padding:1px;}
+
+.goodsDet{ padding:10px 20px;}
+.goodsDet .title{ line-height:28px; font-size:18px; border-bottom:1px solid #e6e6e6; padding-bottom:10px; margin-top: 10px;}
+.goodsDet .iteam{ position:relative;  padding:10px 0 10px 79px;}
+.goodsDet .iteam label{ display:inline-block; font-weight:normal; width:78px; position:absolute; top:10px; left:0px;}
+.goodsDet .sales{ display: inline-block; padding: 2px 5px; background: #c9161c; color: #fff; top: -5px; position: relative;}
+.goodsDet .goodsPrice{ padding-top:15px;padding-bottom:15px;border-bottom:1px solid #e6e6e6;}
+.goodsDet .goodsPrice label{ top:26px;}
+.goodsDet .goodsPrice .st1{ font-size:14px; padding-right:5px;}
+.goodsDet .goodsPrice .st2{ font-size:24px;}
+.goodsDet .goodsPrice .st3{ color:#999; text-decoration:line-through; padding-left:20px;top: -5px; position: relative; margin-left: 5px;}
+.goodsDet .goodsPrice2{}
+.goodsDet .goodsPrice2 .st4{ font-size:15px;}
+.goodsDet .goodsPrice2 .tip{ color:#999; margin-right:15px;}
+
+.goodsModel{ display: inline-block; margin-right: 10px; cursor: pointer}
+.goodsModel i{ display: inline-block; width:19px; height:19px; border: 1px solid #ccc; vertical-align: middle}
+.goodsModel b{display: inline-block; padding: 3px 10px;border: 1px solid #ccc; margin: 0 2px 5px 0; font-weight: normal}
+.goodsModel.radio_on i,.goodsModel.radio_on b{ border: 2px solid #c9161c}
+.goodsModel.radio_on{ color: #c9161c}
+.goodsModel .red{ background: #df4a24;}
+.goodsModel .yellow{ background: #ffd619;}
+.goodsModel .bull{ background: #19bbff;}
+.goodsModel .green{ background: #1bb229;}
+.goodsModel input{ display:none}
+
+.auxiliary{ border-top:1px dotted #e6e6e6; border-bottom: 1px dotted #e6e6e6;}
+.auxiliary .list{ margin-bottom: 5px;}
+.auxiliary .name{ display: inline-block; width: 60px;}
+.auxiliary .min-goods{ display: inline-block; width: 230px;}
+.auxiliary .min-goods img{ width: 20px; height: 20px; border: 1px solid #e6e6e6;vertical-align: middle}
+.auxiliary .min-goods .text{ display: inline-block; width: 140px; overflow: hidden; height: 20px; line-height: 20px; vertical-align: middle}
+.auxiliary .min-goods .price{display: inline-block; width: 60px; color: #c9161c;vertical-align: middle}
+
+.goodsBuy{ margin-top: 10px;}
+.goodsBuy .buying,.goodsBuy .addCar{ line-height: 40px; width: 170px; text-align: center; color: #fff; background: #ffc20f; font-size: 17px; border: 0; letter-spacing: 2px; margin-right: 10px;}
+.goodsBuy .buying:hover{ background: #e8af06}
+.goodsBuy .addCar{ background: #cc0001}
+.goodsBuy .addCar:hover{ background: #a70809;}
+.goodsBuy .addCar .iconfont{ font-size: 25px; margin-right: 10px;}
+.goodsBuy .goodsLove{ display: inline-block;}
+.goodsBuy .goodsLove .love{ color: #999; cursor: pointer;display: inline-block;}
+.goodsBuy .goodsLove .love:hover{ color: #cc0001}
+.goodsBuy .goodsLove .nolove{ color:#cc0001; display: none ;cursor: pointer;}
+.goodsBuy .goodsLove.goodsLove_on  .nolove{ display:inline-block}
+.goodsBuy .goodsLove.goodsLove_on .love{ display: none}
+.goodsBuy .goodsLove .iconfont{ margin-right: 5px;}
+.goodsBuy .goodsLove input{ display: none}
+.goodsStatistics{ padding: 10px 0 30px 0;}
+.goodsStatistics .red{ margin-right: 20px;}
+.goodsAttribute{ background: #e6e6e6; padding: 10px;}
+.goodsAttribute table{ border-collapse: collapse; width: 100%;}
+.goodsAttribute table th{ width: 60px; font-weight: normal; line-height: 25px;}
+.sellerInfo{ border: 1px solid #e6e6e6; width: 100%; margin-top: 10px;}
+.sellerInfo .seller-head img{ width: 100%;}
+.sellerInfo .seller-head .name{ padding: 10px 0; text-align: center; border-bottom: 1px solid #e6e6e6;}
+.sellerCredit{ padding: 10px; line-height: 30px;}
+.sellerService{ padding: 10px;border-top: 1px solid #e6e6e6; min-height: 240px; }
+.sellerService .title{ font-weight: 900; padding-bottom: 10px; }
+.sellerService .iteam{ line-height: 30px;}
+.sellerService .iteam .iconfont{ margin-right: 5px; color: #cc0001; font-size: 14px;}
+.sellerComplain{ line-height: 30px; text-align: center; border-top: 1px solid #e6e6e6;}
+.goodsBody{ padding-top: 30px; padding-bottom: 30px;}
+.goodsLeft{ border: 1px solid #cfcfcf; padding-bottom: 5px; margin-bottom: 20px; }
+.goodsLeft .title{ background: #e6e6e6; padding: 5px 10px; font-weight: 500; font-size: 14px; border-bottom: 1px solid #cfcfcf; margin-bottom: 5px;}
+.goodsLeft .iteam{ line-height: 25px;}
+.goodsLeft .goodsIteam{ margin-bottom: 10px; display: block;}
+.goodsLeft .goodsIteam .img{ width: 100%;}
+.goodsLeft .goodsIteam .name{ display: block; height: 34px; overflow: hidden; }
+.goodsLeft .goodsIteam .price{ display: inline-block; font-size: 14px; display: inline-block; width: 85px; padding-top: 8px;}
+.goodsLeft .goodsIteam .number{display: inline-block;  text-align: right; width: 80px; color: #999; padding-top: 8px;}
+
+.tab_box{border: 1px solid #cfcfcf;}
+.tab_name{line-height: 40px; height: 43px;}
+.tab_name span{ display: block;  background: #e6e6e6; cursor: pointer; float: left; width: 20%; border-right: 1px solid #cfcfcf; border-bottom:  1px solid #cfcfcf; text-align: center; font-size: 14px; }
+.tab_name span:last-child{border-right: 0;}
+.tab_name span.on{ background: #fff; border-bottom: 1px solid #fff; border-top: 2px solid #cc0001; top: -1px; position: relative;}
+.tab_list .bodylist{ display: none}
+.goodsright{ padding: 0; padding-left: 20px;}
+
+.detailtable{ width: 95%; margin: 10px auto; border-collapse: collapse; border: 1px solid #cfcfcf; margin-top:50px;}
+.detailtable th{ background: #f2f2f2; line-height: 30px; font-weight: normal; width: 120px; border: 1px solid #cfcfcf; text-align: center}
+.detailtable td{ padding-left: 10px; text-align: left; border: 1px solid #cfcfcf;}
+
+.priceTable{width: 95%; margin: 10px auto; border-collapse: collapse; border: 1px solid #cfcfcf; margin-top:50px;}
+.priceTable th{ background: #f2f2f2; line-height: 30px; font-weight: normal; border: 1px solid #cfcfcf; text-align: center}
+.priceTable td{ padding-left: 10px; text-align: left; border: 1px solid #cfcfcf; padding: 10px;}
+.priceTable .sele{ padding: 5px;}
+.priceTable .sele select{ width: 100%; line-height: 25px; }
+.priceTable .drf:hover{ background: #f9f9f9;}
+
+.goodsMc{ margin-top:20px;}
+.goodsMc .rate{ text-align: center}
+.goodsMc .rate .number{ font-size: 20px;}
+.goodsMc .rate .number .s1{ font-size: 14px;}
+.goodsMc .rate .number{ line-height: 30px;}
+.goodsMc .percent{}
+.goodsMc .percent .iteam{ margin-bottom: 5px;}
+.goodsMc .percent .iteam .name{ display: inline-block; width: 90px; color: #999}
+.goodsMc .percent .iteam .line{ display: inline-block; width: 120px; position: relative; height: 16px; background: #e6e6e6; vertical-align: middle;}
+.goodsMc .percent .iteam .line i{ display: block; height: 16px; background: #cc0001; top:0; left: 0;}
+.actor-new .name{ color: #999; position: absolute; left: -50px; top: 0px;}
+.actor-new .iteam{ display: inline-block; padding: 3px 8px; background:#eef1ff ; margin: 0 5px 5px 0;}
+.m-tab-trigger-wrap{ line-height: 30px; background: #e6e6e6; margin: 15px; padding-left: 10px;}
+.m-tab-trigger-wrap span{ display: inline-block; margin-right: 20px;}
+.pl-iteam{ margin: 15px 20px; border-bottom: 1px solid #e6e6e6; padding-bottom: 15px;}
+.Pl-column1{ }
+.Pl-column1 .pl-list{ padding: 5px;}
+.Pl-column1 .pl-list span{ display: inline-block; width: 60px; color: #999;}
+.storeMagrin{ margin: 15px;}
+.storeMagrin .col-sm-6{ margin-bottom: 20px;}
+
+.banner{ height: 215px; overflow: hidden}
+.banner img{ width: 100%; height: 215px;}
+.saleNav{ margin-top: 30px;}
+.saleNav .iteam{ display: block; float: left; width:100px; background: #fff; border: 1px solid #cfcfcf; margin-right: 20px; height: 100px; margin-bottom: 20px; text-align: center}
+.saleNav .iteam .iconfont,.saleNav .iteam .iconfont2{ font-size: 30px; margin-top: 15px; margin-bottom: 2px; display: block;}
+.saleNav .iteam.on{ background: #cc0001;  border: 1px solid  #cc0001; color: #fff;}
+.saleColumn{ margin-top: 40px;}
+.saleColumn .title{ font-size: 15px; color: #cc0001; padding-bottom: 5px; border-bottom: 1px solid #cc0001; position: relative; margin-bottom: 20px;}
+.saleColumn .title a{ position: absolute; top:0px; right: 5px;}
+.saleColumn .goodsiteambox{ background: #fff; text-align: center; padding: 10px; margin-bottom: 20px;}
+.saleColumn .goodsiteambox .goodsImg img{ width: 100%;}
+.saleColumn .goodsiteambox .goodsTitle{ line-height: 16px; display: block; overflow: hidden; height: 39px; padding: 5px 0;}
+.saleColumn .goodsiteambox .goodsPrice{ position: relative; display: block;text-align: left}
+.saleColumn .goodsiteambox .goodsPrice .mianprice{ font-size: 17px; color: #cc0001; }
+.saleColumn .goodsiteambox .goodsPrice .fh{color: #cc0001;}
+.saleColumn .goodsiteambox .goodsPrice .originalprice{ text-decoration:line-through; color: #999; position: absolute; top:5px; right: 0;}
+.saleColumn .goodsiteambox2{ background: #fff;}
+.saleColumn .goodsiteambox2 .goodsImg img{ height: 100px; width: 100px; float: left;}
+.saleColumn .goodsiteambox2 .goodsTitle{ display: block; float: left; width: 250px; margin-left: 50px; height: 39px; margin-top: 20px;}
+.saleColumn .goodsiteambox2 .goodsPrice{ display: block; float: left;width: 250px;color: #cc0001; padding-left: 50px; }
+.saleColumn .goodsiteambox2 .goodsPrice .originalprice{ text-decoration:line-through; color: #999; }
+.saleColumn .goodsiteambox2 .goodsPrice .mianprice{ font-size: 17px;}
+.saleColumn .goodsiteambox:hover,.saleColumn .goodsiteambox2:hover{box-shadow: 0 0 4px #ccc; }
+.saleColumn .c-img{ padding: 0; padding-left: 15px;}
+.saleColumn .c-img img{ width: 171px; height: 392px;}
+
+.compareList{ height: 150px; width: 1090px; position: fixed; bottom: 0; left: 50%; margin-left: -545px; border: 2px solid #cc0001; background: #fff; z-index: 99;}
+.compareList .iteam{ padding: 15px; padding-left: 100px; border-right: 1px solid #cfcfcf;}
+.compareList .iteam img{ width: 80px; position: absolute; top:10px; left: 20px;}
+.compareList .iteam .name{ display: block; height: 48px; overflow: hidden; font-size: 12px;}
+.compareList .iteam .price{ display: block; font-size: 15px; color: #cc0001}
+.compareList .iteam button{ background: #fff; border: 1px solid #cfcfcf; position: absolute; top:70px; right: 30px; display: none}
+.compareList .iteam:hover button{ display: block}
+.compareList .title{ border-bottom: 1px solid #cfcfcf; line-height: 45px;}
+.compareList .title .button{ float: right}
+.compareList .title .button a{ display: inline-block; width: 60px; line-height:30px; background: #cc0001; color: #fff; text-align: center; margin: 8px 15px 0 0;}
+.compareList .title .hiden{ display: block; position: absolute; top: -30px; right: -2px; background: #cc0001; color: #fff; width: 60px; text-align: center; border: 0; height: 30px; line-height: 30px;}

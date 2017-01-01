@@ -1,0 +1,14 @@
+@charset "utf-8";
+/* 系统css */
+ /* system权限管理 */
+.role_name{ font-size:14px; line-height:32px; margin-bottom:6px;}
+.xt_name{ padding:0 8px;}
+
+ /* 模块管理 */
+.tree .tree_box h3{ height:40px; line-height:40px; background:#f6f6f6; padding:0 8px; display:block;} 
+.tree li .tree_one li{ padding-left:8px;}
+.tree li a{ color:#666; height:26px; line-height:26px;}
+.tree_box{margin: 5px 0;overflow: hidden;}
+.tree_box h3,.tree_one h4,.tree_two li{cursor: pointer;}
+.tree_one,.tree_two{display: none;margin: 0 0 0 10px;overflow: hidden;}
+.tree_one li{margin: 5px 0;}

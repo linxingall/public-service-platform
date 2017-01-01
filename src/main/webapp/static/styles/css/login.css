@@ -1,0 +1,44 @@
+.login{ height: 580px;}
+.login_box{width:344px;height:420px;background:rgba(255,255,255,0.8);position:absolute;top:57px;right:-5px;padding:3px 5px 7px; box-shadow: 0 0 7px #999;}
+.login_box h3{padding:15px 32px;line-height:33px;font-size:20px;font-weight:500;  letter-spacing: 3px; color:#cc0717;}
+.text_wp{padding:0 32px;height:180px}
+.lg_input{height:43px;position:relative;margin-bottom:14px}
+.lg_input em{display:block;width:41px;height:41px;border:1px solid #ccc;border-right:0 none;float:left;background:#fafafa url(../images/hl_icon05.png) no-repeat}
+.lg_input em.ic01{background-position:0 0}
+.lg_input em.ic02{background-position:0 -58px}
+.lg_input em.ic03{background-position:0 -116px}
+.lg_input em.ic04{background-position:0 -173px}
+.lg_txt01,.lg_txt02{display:block;line-height:21px;padding:9px 12px;background:#fff;border:1px solid #ccc;float:left;font-size:16px;color:#666;font-family:Arial}
+.lg_txt01{width:212px}
+.lg_txt02{width:63px}
+.lg_txt01:placeholder,.lg_txt02:placeholder{color:#aaa;font-size:12px}
+.lg_txt01:-moz-placeholder,.lg_txt02:-moz-placeholder{color:#aaa;font-size:12px}
+.lg_txt01:-webkit-input-placeholder,.lg_txt02:-webkit-input-placeholder{color:#aaa;font-size:12px}
+.code_img{width:139px;float:left;margin-left:9px;height:43px}
+.code_img b{display:block;width:79px;height:41px;border:1px solid #d3dde4;float:left;background:#fff}
+.code_img b img{display:block;width:100%;height:100%}
+.code_img a{color:#e1dfdf;font-size:12px;line-height:23px;;float:left;margin:10px 0 0 12px}
+.login_btn{padding:0 32px}
+.login_btn a{display:block;height:47px;text-align:center;line-height:47px;background: #cc0717;border:1px solid #cc0717;color:#fff;font-size:20px}
+.login_btn a:hover{background:#ee3b49}
+.login_box .error{  position: absolute; top:71px; left: 37px; line-height: 22px; background-color:#f8e0e1; color: #a61620; width: 253px; padding: 0 10px; }
+.lg_link{padding:0 32px;text-align:center;color:#fff;font-size:12px;margin-top:10px}
+.lg_link a{color:#666}
+.lg_link .fl-left{ float: left}
+.lg_link .fl-right{ float: right}
+.lg-banner1{background:url(../images/login-bg.png) center center; background-size: 100% 100%;}
+.loginfooter{ color: #666; background:none}
+
+.regist{ padding: 50px; border-right:1px solid #ededed; }
+.regist .form-control{ border-radius: 0px; padding: 5px 10px; height: 40px;}
+.regist .form-group{ margin-bottom: 30px;}
+.regist-right{ padding: 30px 15px;}
+.regist-right .title{ text-align: center; padding-bottom: 10px; padding-top: 30px; border-bottom: 1px solid #ededed;}
+.regist-right .erweima{ padding-top: 40px; text-align: center;}
+.regist-right .erweima .text{ padding-top: 10px;}
+
+.re-name{ font-size: 21px; color: #fff; line-height: 90px;}
+.re-yzm{ border: 0; background: none;}
+.re-yzm img{ border: 1px solid #cfcfcf; height: 40px; width: 90px; }
+.re-change{ border: 0; background: none;}
+.text-xy{ line-height: 30px;}

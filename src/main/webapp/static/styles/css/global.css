@@ -1,0 +1,21 @@
+.world-bg{ position:absolute; top:10%; bottom:10px; left:0; right:0; background:url(../images/world-bg.png); background-size:100% 100%;}
+.world-map{ width:1356px; height:396px; background:url(../images/world-map.png); position:absolute; top:50%; left:50%; margin-top:-100px; margin-left:-678px;}
+.world-bz{ position:absolute; width:400px; height:150px; top:50%; left:50%; margin-top:148px; margin-left:175px; background:url(../images/world-bz.png) no-repeat 0 -38px;}
+.world-meixi{position:absolute; width:547px; height:262px; top:50%; left:50%; margin-top:-10px; margin-left:-531px; background:url(../images/world-meixi.png) no-repeat 0 0px;}
+.world-meidong{position:absolute; width:328px; height:275px; top:50%; left:50%; margin-top:-224px; margin-left:-681px; background:url(../images/world-meidong.png) no-repeat 0 -17px;}
+.world-yinguo{position:absolute; width:327px; height:278px; top:50%; left:50%; margin-top:-246px; margin-left:-398px; background:url(../images/world-yinguo.png) no-repeat 0 -20px;}
+.world-deguo{position:absolute; width:344px; height:171px; top:50%; left:50%; margin-top:-168px; margin-left:30px; background:url(../images/world-deguo.png) no-repeat 0 -5px;}
+.world-title{ font-size:18px; color:#fff; font-weight:600; letter-spacing:2px; text-shadow:0 0 3px #333; }
+.world-title img{vertical-align:bottom ; margin-right:10px; width:30px;}
+.world-title .radio2{  cursor:pointer; vertical-align:middle}
+.world-title .radio2 img{width:20px;}
+.world-info{ padding-top:10px; font-size:12px; color:#fff; width:210px; line-height:20px;}
+.world-meixi .world-other{padding-top:222px; padding-left:365px;}
+.world-meixi .world-other2{margin-left:365px; width:190px}
+.world-deguo .world-other{padding-left:148px;}
+.index-footer{ height:40px; background:rgba(51,51,51,0.7); position:fixed; bottom:3px
+; left:3px; right:3px; padding:5px 10px 0 10px; z-index:999999; border-radius:5px;color:#999; line-height:18px;}
+.index-footer .f-left{  float:left; padding-right:10px;}
+.index-footer .f-right{ float:right; padding-right:10px; text-align:right}
+#section4{ background:#333}
+#c{ display:block}
