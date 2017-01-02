@@ -22,6 +22,7 @@
                 <prop key="datetime_format">yyyy-MM-dd</prop>
                 <prop key="date_format">yyyy-MM-dd</prop>
                 <prop key="number_format">#.##</prop>
+                <prop key="auto_import">/common/pageModel.ftl as p</prop>
             </props>
         </property>
     </bean>
