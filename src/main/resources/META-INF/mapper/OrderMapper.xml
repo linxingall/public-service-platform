@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ygjt.gdn.psp.persistence.OrderDao">
+     <resultMap id="BaseResultMap" type="com.ygjt.gdn.psp.model.OrderDo">
+          <id column="ID" jdbcType="INTEGER" property="id" />
+          <result column="CREATED_DT" jdbcType="TIMESTAMP" property="createdDt" />
+          <result column="CREATED_BY" jdbcType="INTEGER" property="createdBy" />
+          <result column="LASTUPDATE_DT" jdbcType="TIMESTAMP" property="lastupdateDt" />
+          <result column="LASTUPDATE_BY" jdbcType="INTEGER" property="lastupdateBy" />
+          <result column="sts" jdbcType="CHAR" property="sts" />
+          <result column="MERCHANT_NAME" jdbcType="VARCHAR" property="merchantName" />
+          <result column="ORDER_NO" jdbcType="VARCHAR" property="orderNo" />
+          <result column="AMOUNT" jdbcType="DOUBLE" property="amount" />
+          <result column="IS_PRINT" jdbcType="CHAR" property="isPrint" />
+          <result column="ORDER_STS" jdbcType="CHAR" property="orderSts" />
+     </resultMap>
+     <sql id="Query_Where_Clause">
+          <where>
+               <foreach collection="oredCriteria" item="criteria" separator="or">
+                    <if test="criteria.valid">
+                         <trim prefix="(" prefixOverrides="and" suffix=")">
+                              <foreach collection="criteria.criteria" item="criterion">
+                                   <choose>
+                                        <when test="criterion.noValue">
+                                             and ${criterion.condition}
+                                        </when>
+                                        <when test="criterion.singleValue">
+                                             and ${criterion.condition} #{criterion.value}
+                                        </when>
+                                        <when test="criterion.betweenValue">
+                                             and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                        </when>
+                                        <when test="criterion.listValue">
+                                             and ${criterion.condition}
+                                             <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                                  #{listItem}
+                                             </foreach>
+                                        </when>
+                                   </choose>
+                              </foreach>
+                         </trim>
+                    </if>
+               </foreach>
+          </where>
+     </sql>
+     <sql id="Update_By_Query_Where_Clause">
+          <where>
+               <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                    <if test="criteria.valid">
+                         <trim prefix="(" prefixOverrides="and" suffix=")">
+                              <foreach collection="criteria.criteria" item="criterion">
+                                   <choose>
+                                        <when test="criterion.noValue">
+                                             and ${criterion.condition}
+                                        </when>
+                                        <when test="criterion.singleValue">
+                                             and ${criterion.condition} #{criterion.value}
+                                        </when>
+                                        <when test="criterion.betweenValue">
+                                             and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                        </when>
+                                        <when test="criterion.listValue">
+                                             and ${criterion.condition}
+                                             <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                                  #{listItem}
+                                             </foreach>
+                                        </when>
+                                   </choose>
+                              </foreach>
+                         </trim>
+                    </if>
+               </foreach>
+          </where>
+     </sql>
+     <sql id="Base_Column_List">
+          ID, CREATED_DT, CREATED_BY, LASTUPDATE_DT, LASTUPDATE_BY, sts, MERCHANT_NAME, ORDER_NO, 
+          AMOUNT, IS_PRINT, ORDER_STS
+     </sql>
+     <select id="selectByQuery" parameterType="com.ygjt.gdn.psp.model.OrderQuery" resultMap="BaseResultMap">
+          select
+          <if test="distinct">
+               distinct
+          </if>
+          <include refid="Base_Column_List" />
+          from tb_order
+          <if test="_parameter != null">
+               <include refid="Query_Where_Clause" />
+          </if>
+          <if test="orderByClause != null">
+               order by ${orderByClause}
+          </if>
+     </select>
+     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+          select 
+          <include refid="Base_Column_List" />
+          from tb_order
+          where ID = #{id,jdbcType=INTEGER}
+     </select>
+     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+          delete from tb_order
+          where ID = #{id,jdbcType=INTEGER}
+     </delete>
+     <delete id="deleteByQuery" parameterType="com.ygjt.gdn.psp.model.OrderQuery">
+          delete from tb_order
+          <if test="_parameter != null">
+               <include refid="Query_Where_Clause" />
+          </if>
+     </delete>
+     <insert id="insert" parameterType="com.ygjt.gdn.psp.model.OrderDo">
+          <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+               SELECT LAST_INSERT_ID()
+          </selectKey>
+          insert into tb_order (CREATED_DT, CREATED_BY, LASTUPDATE_DT, 
+               LASTUPDATE_BY, sts, MERCHANT_NAME, 
+               ORDER_NO, AMOUNT, IS_PRINT, 
+               ORDER_STS)
+          values (#{createdDt,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=INTEGER}, #{lastupdateDt,jdbcType=TIMESTAMP}, 
+               #{lastupdateBy,jdbcType=INTEGER}, #{sts,jdbcType=CHAR}, #{merchantName,jdbcType=VARCHAR}, 
+               #{orderNo,jdbcType=VARCHAR}, #{amount,jdbcType=DOUBLE}, #{isPrint,jdbcType=CHAR}, 
+               #{orderSts,jdbcType=CHAR})
+     </insert>
+     <insert id="insertSelective" parameterType="com.ygjt.gdn.psp.model.OrderDo">
+          <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+               SELECT LAST_INSERT_ID()
+          </selectKey>
+          insert into tb_order
+          <trim prefix="(" suffix=")" suffixOverrides=",">
+               <if test="createdDt != null">
+                    CREATED_DT,
+               </if>
+               <if test="createdBy != null">
+                    CREATED_BY,
+               </if>
+               <if test="lastupdateDt != null">
+                    LASTUPDATE_DT,
+               </if>
+               <if test="lastupdateBy != null">
+                    LASTUPDATE_BY,
+               </if>
+               <if test="sts != null">
+                    sts,
+               </if>
+               <if test="merchantName != null">
+                    MERCHANT_NAME,
+               </if>
+               <if test="orderNo != null">
+                    ORDER_NO,
+               </if>
+               <if test="amount != null">
+                    AMOUNT,
+               </if>
+               <if test="isPrint != null">
+                    IS_PRINT,
+               </if>
+               <if test="orderSts != null">
+                    ORDER_STS,
+               </if>
+          </trim>
+          <trim prefix="values (" suffix=")" suffixOverrides=",">
+               <if test="createdDt != null">
+                    #{createdDt,jdbcType=TIMESTAMP},
+               </if>
+               <if test="createdBy != null">
+                    #{createdBy,jdbcType=INTEGER},
+               </if>
+               <if test="lastupdateDt != null">
+                    #{lastupdateDt,jdbcType=TIMESTAMP},
+               </if>
+               <if test="lastupdateBy != null">
+                    #{lastupdateBy,jdbcType=INTEGER},
+               </if>
+               <if test="sts != null">
+                    #{sts,jdbcType=CHAR},
+               </if>
+               <if test="merchantName != null">
+                    #{merchantName,jdbcType=VARCHAR},
+               </if>
+               <if test="orderNo != null">
+                    #{orderNo,jdbcType=VARCHAR},
+               </if>
+               <if test="amount != null">
+                    #{amount,jdbcType=DOUBLE},
+               </if>
+               <if test="isPrint != null">
+                    #{isPrint,jdbcType=CHAR},
+               </if>
+               <if test="orderSts != null">
+                    #{orderSts,jdbcType=CHAR},
+               </if>
+          </trim>
+     </insert>
+     <select id="countByQuery" parameterType="com.ygjt.gdn.psp.model.OrderQuery" resultType="java.lang.Integer">
+          select count(*) from tb_order
+          <if test="_parameter != null">
+               <include refid="Query_Where_Clause" />
+          </if>
+     </select>
+     <update id="updateByQuerySelective" parameterType="map">
+          update tb_order
+          <set>
+               <if test="record.id != null">
+                    ID = #{record.id,jdbcType=INTEGER},
+               </if>
+               <if test="record.createdDt != null">
+                    CREATED_DT = #{record.createdDt,jdbcType=TIMESTAMP},
+               </if>
+               <if test="record.createdBy != null">
+                    CREATED_BY = #{record.createdBy,jdbcType=INTEGER},
+               </if>
+               <if test="record.lastupdateDt != null">
+                    LASTUPDATE_DT = #{record.lastupdateDt,jdbcType=TIMESTAMP},
+               </if>
+               <if test="record.lastupdateBy != null">
+                    LASTUPDATE_BY = #{record.lastupdateBy,jdbcType=INTEGER},
+               </if>
+               <if test="record.sts != null">
+                    sts = #{record.sts,jdbcType=CHAR},
+               </if>
+               <if test="record.merchantName != null">
+                    MERCHANT_NAME = #{record.merchantName,jdbcType=VARCHAR},
+               </if>
+               <if test="record.orderNo != null">
+                    ORDER_NO = #{record.orderNo,jdbcType=VARCHAR},
+               </if>
+               <if test="record.amount != null">
+                    AMOUNT = #{record.amount,jdbcType=DOUBLE},
+               </if>
+               <if test="record.isPrint != null">
+                    IS_PRINT = #{record.isPrint,jdbcType=CHAR},
+               </if>
+               <if test="record.orderSts != null">
+                    ORDER_STS = #{record.orderSts,jdbcType=CHAR},
+               </if>
+          </set>
+          <if test="_parameter != null">
+               <include refid="Update_By_Query_Where_Clause" />
+          </if>
+     </update>
+     <update id="updateByQuery" parameterType="map">
+          update tb_order
+          set ID = #{record.id,jdbcType=INTEGER},
+               CREATED_DT = #{record.createdDt,jdbcType=TIMESTAMP},
+               CREATED_BY = #{record.createdBy,jdbcType=INTEGER},
+               LASTUPDATE_DT = #{record.lastupdateDt,jdbcType=TIMESTAMP},
+               LASTUPDATE_BY = #{record.lastupdateBy,jdbcType=INTEGER},
+               sts = #{record.sts,jdbcType=CHAR},
+               MERCHANT_NAME = #{record.merchantName,jdbcType=VARCHAR},
+               ORDER_NO = #{record.orderNo,jdbcType=VARCHAR},
+               AMOUNT = #{record.amount,jdbcType=DOUBLE},
+               IS_PRINT = #{record.isPrint,jdbcType=CHAR},
+               ORDER_STS = #{record.orderSts,jdbcType=CHAR}
+          <if test="_parameter != null">
+               <include refid="Update_By_Query_Where_Clause" />
+          </if>
+     </update>
+     <update id="updateByPrimaryKeySelective" parameterType="com.ygjt.gdn.psp.model.OrderDo">
+          update tb_order
+          <set>
+               <if test="createdDt != null">
+                    CREATED_DT = #{createdDt,jdbcType=TIMESTAMP},
+               </if>
+               <if test="createdBy != null">
+                    CREATED_BY = #{createdBy,jdbcType=INTEGER},
+               </if>
+               <if test="lastupdateDt != null">
+                    LASTUPDATE_DT = #{lastupdateDt,jdbcType=TIMESTAMP},
+               </if>
+               <if test="lastupdateBy != null">
+                    LASTUPDATE_BY = #{lastupdateBy,jdbcType=INTEGER},
+               </if>
+               <if test="sts != null">
+                    sts = #{sts,jdbcType=CHAR},
+               </if>
+               <if test="merchantName != null">
+                    MERCHANT_NAME = #{merchantName,jdbcType=VARCHAR},
+               </if>
+               <if test="orderNo != null">
+                    ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+               </if>
+               <if test="amount != null">
+                    AMOUNT = #{amount,jdbcType=DOUBLE},
+               </if>
+               <if test="isPrint != null">
+                    IS_PRINT = #{isPrint,jdbcType=CHAR},
+               </if>
+               <if test="orderSts != null">
+                    ORDER_STS = #{orderSts,jdbcType=CHAR},
+               </if>
+          </set>
+          where ID = #{id,jdbcType=INTEGER}
+     </update>
+     <update id="updateByPrimaryKey" parameterType="com.ygjt.gdn.psp.model.OrderDo">
+          update tb_order
+          set CREATED_DT = #{createdDt,jdbcType=TIMESTAMP},
+               CREATED_BY = #{createdBy,jdbcType=INTEGER},
+               LASTUPDATE_DT = #{lastupdateDt,jdbcType=TIMESTAMP},
+               LASTUPDATE_BY = #{lastupdateBy,jdbcType=INTEGER},
+               sts = #{sts,jdbcType=CHAR},
+               MERCHANT_NAME = #{merchantName,jdbcType=VARCHAR},
+               ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+               AMOUNT = #{amount,jdbcType=DOUBLE},
+               IS_PRINT = #{isPrint,jdbcType=CHAR},
+               ORDER_STS = #{orderSts,jdbcType=CHAR}
+          where ID = #{id,jdbcType=INTEGER}
+     </update>
+</mapper>

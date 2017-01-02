@@ -44,13 +44,32 @@
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
 
-    <table schema="psp" tableName="tb_user" domainObjectName="User">
+  <!--  <table schema="psp" tableName="tb_user" domainObjectName="User">
+      <property name="useActualColumnNames" value="false" />
+      <property name="ignoreQualifiersAtRuntime" value="true" />
+      <property name="constructorBased" value="false" />
+      <generatedKey column="id" sqlStatement="MySql" identity="true" />
+    </table>-->
+
+   <!-- <table schema="psp" tableName="tb_goods" domainObjectName="Goods">
+      <property name="useActualColumnNames" value="false" />
+      <property name="ignoreQualifiersAtRuntime" value="true" />
+      <property name="constructorBased" value="false" />
+      <generatedKey column="id" sqlStatement="MySql" identity="true" />
+    </table>-->
+
+    <table schema="psp" tableName="tb_order" domainObjectName="Order">
       <property name="useActualColumnNames" value="false" />
       <property name="ignoreQualifiersAtRuntime" value="true" />
       <property name="constructorBased" value="false" />
       <generatedKey column="id" sqlStatement="MySql" identity="true" />
     </table>
 
-
+   <!-- <table schema="psp" tableName="tb_order_goods" domainObjectName="OrderGoods">
+      <property name="useActualColumnNames" value="false" />
+      <property name="ignoreQualifiersAtRuntime" value="true" />
+      <property name="constructorBased" value="false" />
+      <generatedKey column="id" sqlStatement="MySql" identity="true" />
+    </table>-->
   </context>
 </generatorConfiguration>
