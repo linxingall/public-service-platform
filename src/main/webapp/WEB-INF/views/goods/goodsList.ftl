@@ -32,7 +32,7 @@
                 <td>${goods.name!''}</td>
                 <td>${goods.code!''}</td>
                 <td>${goods.goodsSort!''}</td>
-                <td>${goods.createdDt!''}</td>
+                <td>${goods.createdDt?string("yyyy-MM-dd HH:mm:ss")}</td>
             </tr>
                </#list>
         </table>

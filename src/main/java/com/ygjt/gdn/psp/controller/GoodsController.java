@@ -29,8 +29,7 @@ public class GoodsController extends BaseController{
 
     @RequestMapping("list")
     public ModelAndView list(Model model, GoodsPO goodsPO,
-                             @RequestParam(value = "pageNo", defaultValue = "1") String pageNo,
-                             HttpServletRequest request, HttpServletResponse response) throws ServiceException {
+                             @RequestParam(value = "pageNo", defaultValue = "1") String pageNo) throws ServiceException {
 
         GoodsQuery example = new GoodsQuery();
         GoodsQuery.Criteria criteria = example.createCriteria();
