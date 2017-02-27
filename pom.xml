@@ -7,11 +7,6 @@
     <groupId>com.ygjt.com</groupId>
     <artifactId>public-service-platform</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <parent>
-        <groupId>com.ygjt.gdn.base</groupId>
-        <artifactId>base-parent</artifactId>
-        <version>1.0.0</version>
-    </parent>
     <properties>
         <spring.version>3.2.9.RELEASE</spring.version>
         <mybatis.version>3.2.3</mybatis.version>
